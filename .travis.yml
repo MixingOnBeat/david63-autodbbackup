@@ -18,7 +18,7 @@ matrix:
           env: DB=mysqli
         - php: 5.6
           env: DB=mysqli
-		- php: 7.0
+        - php: 7.0
           env: DB=mysqli
         - php: hhvm
           env: DB=mysqli
@@ -55,4 +55,5 @@ script:
     - sh -c "if [ '$IMAGE_ICC' != '0' ]; then travis/check-image-icc-profiles.sh $DB $TRAVIS_PHP_VERSION; fi"
     - phpBB/vendor/bin/phpunit --configuration phpBB/ext/$EXTNAME/travis/phpunit-$DB-travis.xml --bootstrap ./tests/bootstrap.php
     - sh -c "if [ '$EPV' != '0' ] && [ '$TRAVIS_PHP_VERSION' = '5.5' ] && [ '$DB' = 'mysqli' ]; then phpBB/vendor/bin/EPV.php run --dir='phpBB/ext/$EXTNAME/'; fi"
+
 
