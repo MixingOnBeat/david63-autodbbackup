@@ -10,8 +10,14 @@
 namespace david63\autodbbackup\cron\task\core;
 
 use Symfony\Component\DependencyInjection\ContainerInterface;
+use \phpbb\cron\task\base;
+use \phpbb\config\config;
+use \phpbb\db\driver\driver_interface;
+use \phpbb\log\log;
+use \phpbb\user;
+use \phpbb\event\dispatcher_interface;
 
-class auto_db_backup extends \phpbb\cron\task\base
+class auto_db_backup extends base
 {
 	/** @var string phpBB root path */
 	protected $root_path;
@@ -22,7 +28,7 @@ class auto_db_backup extends \phpbb\cron\task\base
 	/** @var string phpBB table prefix */
 	protected $phpbb_table_prefix;
 
-	/** @var \phpbb\config\config */
+	/** @var config */
 	protected $config;
 
 	/** @var \phpbb\db\driver\driver_interface */
@@ -40,22 +46,25 @@ class auto_db_backup extends \phpbb\cron\task\base
 	/** @var \phpbb\event\dispatcher_interface */
 	protected $dispatcher;
 
-	/**
-	* Constructor for cron auto_db_backup
-	*
-	* @param string								$root_path
-	* @param string								$php_ext
-	* @param string								$phpbb_table_prefix
-	* @param \phpbb\config\config				$config					Config object
-	* @param \phpbb\db\driver\driver_interface	$db
-	* @param \phpbb\log\log						$log					phpBB log
-	* @param \phpbb\user						$user					User object
-	* @param ContainerInterface					$container				Service container interface
-	*
-	* @return \david63\autodbbackup\cron\task\core\auto_db_backup
-	* @access public
-	*/
-	public function __construct($phpbb_root_path, $php_ext, $phpbb_table_prefix, \phpbb\config\config $config, \phpbb\db\driver\driver_interface $db, \phpbb\log\log $log, \phpbb\user $user, ContainerInterface $phpbb_container, \phpbb\event\dispatcher_interface $dispatcher)
+    /**
+     * Constructor for cron auto_db_backup
+     *
+     * @param string phpbb_root_path            $phpbb_root_path
+     * @param string                            $php_ext
+     * @param string                            $phpbb_table_prefix
+     * @param config                            $config Config object
+     * @param \phpbb\db\driver\driver_interface $db
+     * @param \phpbb\log\log                    $log    phpBB log
+     * @param \phpbb\user                       $user   User object
+     * @param ContainerInterface                $phpbb_container
+     * @param dispatcher_interface              $dispatcher
+     *
+     * @internal param string $root_path
+     * @internal param ContainerInterface $container Service container interface
+     *
+     * @access   public
+     */
+	public function __construct($phpbb_root_path, $php_ext, $phpbb_table_prefix, config $config, driver_interface $db, log $log, user $user, ContainerInterface $phpbb_container, dispatcher_interface $dispatcher)
 	{
 		$this->phpbb_root_path	= $phpbb_root_path;
 		$this->php_ext			= $php_ext;
@@ -184,11 +193,13 @@ class auto_db_backup extends \phpbb\cron\task\base
 		$this->log->add('admin', $this->user->data['user_id'], $this->user->ip, 'LOG_AUTO_DB_BACKUP');
 	}
 
-	/**
-	* Get the extension type.
-	*
-	* @return $extension
-	*/
+    /**
+     * Get the extension type.
+     *
+     * @param $file_type
+     *
+     * @return string $extension
+     */
 	protected function get_extension($file_type)
 	{
 		switch ($file_type)

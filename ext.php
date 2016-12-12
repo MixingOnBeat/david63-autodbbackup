@@ -9,7 +9,9 @@
 
 namespace david63\autodbbackup;
 
-class ext extends \phpbb\extension\base
+use \phpbb\extension\base;
+
+class ext extends base
 {
 	const AUTO_DB_BACKUP_VERSION = '2.1.0';
 	

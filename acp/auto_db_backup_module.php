@@ -15,10 +15,10 @@ class auto_db_backup_module
 
 	function main($id, $mode)
 	{
-		global $phpbb_container, $user;
+		global $phpbb_container;
 
 		$this->tpl_name		= 'auto_db_backup';
-		$this->page_title	= $user->lang('AUTO_DB_BACKUP_SETTINGS');
+		$this->page_title	= $phpbb_container->get('language')->lang('AUTO_DB_BACKUP_SETTINGS');
 
 		// Get an instance of the admin controller
 		$admin_controller = $phpbb_container->get('david63.autodbbackup.admin.controller');

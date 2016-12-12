@@ -8,7 +8,13 @@
 */
 
 namespace david63\autodbbackup\controller;
-use david63\autodbbackup\ext;
+use \phpbb\config\config;
+use \phpbb\request\request;
+use \phpbb\template\template;
+use \phpbb\user;
+use \phpbb\log\log;
+use \phpbb\language\language;
+use \david63\autodbbackup\ext;
 
 /**
 * Admin controller
@@ -46,12 +52,12 @@ class admin_controller implements admin_interface
 	* @param \phpbb\template\template	$template	Template object
 	* @param \phpbb\user				$user		User object
 	* @param \phpbb\log\log				$log
-	* @param phpbb\language\language	$language
+	* @param \phpbb\language\language	$language
 	*
 	* @return \david63\autodbbackup\controller\admin_controller
 	* @access public
 	*/
-	public function __construct(\phpbb\config\config $config, \phpbb\request\request $request, \phpbb\template\template $template, \phpbb\user $user, \phpbb\log\log $log, \phpbb\language\language $language)
+	public function __construct(config $config, request $request, template $template, user $user, log $log, language $language)
 	{
 		$this->config	= $config;
 		$this->request	= $request;

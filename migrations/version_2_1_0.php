@@ -9,7 +9,9 @@
 
 namespace david63\autodbbackup\migrations;
 
-class version_2_1_0 extends \phpbb\db\migration\migration
+use phpbb\db\migration\migration;
+
+class version_2_1_0 extends migration
 {
 	public function update_data()
 	{
