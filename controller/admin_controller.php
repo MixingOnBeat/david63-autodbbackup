@@ -8,6 +8,7 @@
 */
 
 namespace david63\autodbbackup\controller;
+
 use \phpbb\config\config;
 use \phpbb\request\request;
 use \phpbb\template\template;
@@ -51,8 +52,8 @@ class admin_controller implements admin_interface
 	* @param \phpbb\request\request		$request	Request object
 	* @param \phpbb\template\template	$template	Template object
 	* @param \phpbb\user				$user		User object
-	* @param \phpbb\log\log				$log
-	* @param \phpbb\language\language	$language
+	* @param \phpbb\log\log				$log		Log object
+	* @param \phpbb\language\language	$language	Language object
 	*
 	* @return \david63\autodbbackup\controller\admin_controller
 	* @access public
@@ -108,7 +109,7 @@ class admin_controller implements admin_interface
 				trigger_error($this->language->lang('DATE_TIME_ERROR') . adm_back_link($this->u_action), E_USER_WARNING);
 			}
 
-			$dst 	= date('I', $time);
+			$dst = date('I', $time);
 			$this->backup_date = mktime($hour + $dst, $minute, 0, $month, $day, $year);
 
 			// Skip this check if disabling
@@ -137,9 +138,12 @@ class admin_controller implements admin_interface
 			'AUTO_DB_BACKUP_MONTH' 		=> $next_backup_date['mon'],
 			'AUTO_DB_BACKUP_VERSION'	=> ext::AUTO_DB_BACKUP_VERSION,
 			'AUTO_DB_BACKUP_YEAR' 		=> $next_backup_date['year'],
+
 			'S_AUTO_DB_BACKUP_ENABLE'	=> $this->config['auto_db_backup_enable'],
 			'S_AUTO_DB_BACKUP_OPTIMIZE'	=> $this->config['auto_db_backup_optimize'],
+
 			'U_ACTION'					=> $this->u_action,
+			
 			'YEAR_START' 				=> $next_backup_date['year'],
 			'YEAR_END' 					=> $next_backup_date['year'] + 1,
 		));

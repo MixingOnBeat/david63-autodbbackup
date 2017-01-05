@@ -49,15 +49,15 @@ class auto_db_backup extends base
     /**
      * Constructor for cron auto_db_backup
      *
-     * @param string phpbb_root_path            $phpbb_root_path
-     * @param string                            $php_ext
-     * @param string                            $phpbb_table_prefix
-     * @param config                            $config Config object
-     * @param \phpbb\db\driver\driver_interface $db
-     * @param \phpbb\log\log                    $log    phpBB log
-     * @param \phpbb\user                       $user   User object
-     * @param ContainerInterface                $phpbb_container
-     * @param dispatcher_interface              $dispatcher
+     * @param string phpbb_root_path            $phpbb_root_path	phpBB root path
+     * @param string                            $php_ext			phpBB file extension
+     * @param string                            $phpbb_table_prefix	phpBB table prefix
+     * @param config                            $config				Config object
+     * @param \phpbb\db\driver\driver_interface $db					Database objecy
+     * @param \phpbb\log\log                    $log    			phpBB log
+     * @param \phpbb\user                       $user   			User object
+     * @param ContainerInterface                $phpbb_container	phpBBcontainer
+     * @param dispatcher_interface              $dispatcher			phpBB dispatcher
      *
      * @internal param string $root_path
      * @internal param ContainerInterface $container Service container interface
