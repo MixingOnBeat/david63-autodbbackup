@@ -2,7 +2,7 @@
 	"name": "david63/autodbbackup",
 	"type": "phpbb-extension",
 	"description": "An extension for phpBB 3.2 that will automatically backup your database using the phpBB 3.2 Cron.",
-	"version": "2.1.0",
+	"version": "2.1.0-rc1",
 	"time": "2017-01-05",
 	"keywords": [
 		"phpbb",

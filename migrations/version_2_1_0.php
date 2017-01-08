@@ -17,11 +17,11 @@ class version_2_1_0 extends migration
 	{
 		return array(
 			array('config.add', array('auto_db_backup_copies', 5)),
-			array('config.add', array('auto_db_backup_enable', '1')),
+			array('config.add', array('auto_db_backup_enable', 0)),
 			array('config.add', array('auto_db_backup_filetype', 'text')),
 			array('config.add', array('auto_db_backup_gc', 3600)),
 			array('config.add', array('auto_db_backup_last_gc', time())),
-			array('config.add', array('auto_db_backup_optimize', '0')),
+			array('config.add', array('auto_db_backup_optimize', 0)),
 
 			// Add the ACP module
 			array('module.add', array('acp', 'ACP_CAT_MAINTENANCE', 'ACP_AUTO_DB_BACKUP')),
