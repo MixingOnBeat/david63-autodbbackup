@@ -13,7 +13,7 @@ use \phpbb\extension\base;
 
 class ext extends base
 {
-	const AUTO_DB_BACKUP_VERSION = '2.1.0-rc1';
+	const AUTO_DB_BACKUP_VERSION = '2.1.0 RC1';
 	
 	/**
 	* Enable extension if phpBB version requirement is met

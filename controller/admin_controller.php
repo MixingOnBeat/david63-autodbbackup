@@ -84,6 +84,9 @@ class admin_controller implements admin_interface
 		add_form_key($form_key);
 
 		$this->get_filetypes();
+
+		// Make sure that the correct timezone is being used for the board
+		date_default_timezone_set ($this->config['board_timezone']);
 		$time = time();
 
 		// Submit
