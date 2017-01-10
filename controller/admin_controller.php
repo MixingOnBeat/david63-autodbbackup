@@ -158,7 +158,7 @@ class admin_controller implements admin_interface
 		$this->config->set('auto_db_backup_enable', $this->request->variable('auto_db_backup_enable', 0));
 		$this->config->set('auto_db_backup_filetype', $this->request->variable('auto_db_backup_filetype', 'text'));
 		$this->config->set('auto_db_backup_gc', $this->request->variable('auto_db_backup_gc', 0) * 3600);
-		$this->config->set('auto_db_backup_last_gc', $this->backup_date - 3600, 0);
+		$this->config->set('auto_db_backup_last_gc', $this->backup_date, 0);
 		$this->config->set('auto_db_backup_optimize', $this->request->variable('auto_db_backup_optimize', 0));
 	}
 
