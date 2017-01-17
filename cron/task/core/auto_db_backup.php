@@ -84,6 +84,10 @@ class auto_db_backup extends base
 	*/
 	public function run()
 	{
+		// Update the last backup time.
+		// We do this here to prevent the Auto Backup running twice
+		$this->config->set('auto_db_backup_last_gc', time(), true);
+
 		// Need to include this file for the get_usable_memory() function
 		if (!function_exists('get_usable_memory'))
 		{
@@ -188,8 +192,7 @@ class auto_db_backup extends base
 			}
 		}
 
-		// Update the last backup time and write the log entry
-		$this->config->set('auto_db_backup_last_gc', time(), true);
+		// Write the log entry
 		$this->log->add('admin', $this->user->data['user_id'], $this->user->ip, 'LOG_AUTO_DB_BACKUP');
 	}
 
