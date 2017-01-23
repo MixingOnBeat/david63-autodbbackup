@@ -3,7 +3,7 @@
 *
 * @package Auto db Backup (3.2)
 * @copyright (c) 2015 david63
-* @license http://opensource.org/licenses/gpl-2.0.php GNU General Public License v2
+* @license GNU General Public License, version 2 (GPL-2.0)
 *
 */
 
@@ -106,19 +106,21 @@ class admin_controller implements admin_interface
 			$minute	= $this->request->variable('auto_db_backup_minute', 0);
 			$enable = $this->request->variable('auto_db_backup_enable', 0);
 
-			// Let's do a bit of validation
-			if (!checkdate($month, $day, $year))
-			{
-				trigger_error($this->language->lang('DATE_TIME_ERROR') . adm_back_link($this->u_action), E_USER_WARNING);
-			}
-
 			$dst = date('I', $time);
 			$this->backup_date = mktime($hour + $dst, $minute, 0, $month, $day, $year);
 
-			// Skip this check if disabling
-			if ($enable && $this->backup_date <= $time)
+			// Let's do a bit of validation if not disabling
+			if ($enable)
 			{
-				trigger_error($this->language->lang('AUTO_DB_BACKUP_TIME_ERROR') . adm_back_link($this->u_action), E_USER_WARNING);
+				if (!checkdate($month, $day, $year))
+				{
+					trigger_error($this->language->lang('DATE_TIME_ERROR') . adm_back_link($this->u_action), E_USER_WARNING);
+				}
+
+				if ($this->backup_date <= $time)
+				{
+					trigger_error($this->language->lang('AUTO_DB_BACKUP_TIME_ERROR') . adm_back_link($this->u_action), E_USER_WARNING);
+				}
 			}
 
 			// Set the options the user has configured
@@ -135,7 +137,7 @@ class admin_controller implements admin_interface
 		$this->template->assign_vars(array(
 			'AUTO_DB_BACKUP_COPIES'		=> $this->config['auto_db_backup_copies'],
 			'AUTO_DB_BACKUP_DAY' 		=> $next_backup_date['mday'],
-			'AUTO_DB_BACKUP_GC'			=> $this->config['auto_db_backup_gc'] / 3600,
+			'AUTO_DB_BACKUP_GC'			=> $this->config['auto_db_backup_gc'] / ext::seconds,
 			'AUTO_DB_BACKUP_HOUR' 		=> $next_backup_date['hours'],
 			'AUTO_DB_BACKUP_MINUTE' 	=> $next_backup_date['minutes'],
 			'AUTO_DB_BACKUP_MONTH' 		=> $next_backup_date['mon'],
@@ -157,8 +159,8 @@ class admin_controller implements admin_interface
 		$this->config->set('auto_db_backup_copies', $this->request->variable('auto_db_backup_copies', 0));
 		$this->config->set('auto_db_backup_enable', $this->request->variable('auto_db_backup_enable', 0));
 		$this->config->set('auto_db_backup_filetype', $this->request->variable('auto_db_backup_filetype', 'text'));
-		$this->config->set('auto_db_backup_gc', $this->request->variable('auto_db_backup_gc', 0) * 3600);
-		$this->config->set('auto_db_backup_last_gc', $this->backup_date, 0);
+		$this->config->set('auto_db_backup_gc', $this->request->variable('auto_db_backup_gc', 0) * ext::seconds);
+		$this->config->set('auto_db_backup_last_gc', $this->backup_date - ($this->request->variable('auto_db_backup_gc', 0) * ext::seconds), 0);
 		$this->config->set('auto_db_backup_optimize', $this->request->variable('auto_db_backup_optimize', 0));
 	}
 

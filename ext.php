@@ -3,7 +3,7 @@
 *
 * @package Auto db Backup (3.2)
 * @copyright (c) 2015 david63
-* @license http://opensource.org/licenses/gpl-2.0.php GNU General Public License v2
+* @license GNU General Public License, version 2 (GPL-2.0)
 *
 */
 
@@ -14,6 +14,7 @@ use \phpbb\extension\base;
 class ext extends base
 {
 	const AUTO_DB_BACKUP_VERSION = '2.1.0 RC1';
+	const seconds = 3600;
 	
 	/**
 	* Enable extension if phpBB version requirement is met

@@ -3,7 +3,7 @@
 *
 * @package Auto db Backup (3.2)
 * @copyright (c) 2015 david63
-* @license http://opensource.org/licenses/gpl-2.0.php GNU General Public License v2
+* @license GNU General Public License, version 2 (GPL-2.0)
 *
 */
 
@@ -58,9 +58,6 @@ class auto_db_backup extends base
      * @param \phpbb\user                       $user   			User object
      * @param ContainerInterface                $phpbb_container	phpBBcontainer
      * @param dispatcher_interface              $dispatcher			phpBB dispatcher
-     *
-     * @internal param string $root_path
-     * @internal param ContainerInterface $container Service container interface
      *
      * @access   public
      */
