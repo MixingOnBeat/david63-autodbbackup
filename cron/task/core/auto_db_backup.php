@@ -72,6 +72,9 @@ class auto_db_backup extends base
 		$this->user				= $user;
 		$this->container		= $phpbb_container;
 		$this->dispatcher		= $dispatcher;
+
+		// Set the timezone
+		date_default_timezone_set($this->config['auto_db_backup_timezone']);
 	}
 
 	/**

@@ -86,7 +86,7 @@ class admin_controller implements admin_interface
 		$this->get_filetypes();
 
 		// Make sure that the correct timezone is being used for the board
-		date_default_timezone_set ($this->config['board_timezone']);
+		date_default_timezone_set($this->user->data['user_timezone']);
 		$time = time();
 
 		// Submit
@@ -131,7 +131,7 @@ class admin_controller implements admin_interface
 			trigger_error($this->language->lang('AUTO_DB_BACKUP_SETTINGS_CHANGED') . adm_back_link($this->u_action));
 		}
 
-		$next_backup_date = ($this->config['auto_db_backup_last_gc'] > $time) ? getdate($this->config['auto_db_backup_last_gc']) : getdate($this->config['auto_db_backup_last_gc'] + $this->config['auto_db_backup_gc']);
+		$next_backup_date = ($this->config['auto_db_backup_last_gc'] < $time) ? getdate($this->config['auto_db_backup_last_gc'] + $this->config['auto_db_backup_gc']) : getdate($this->config['auto_db_backup_last_gc']);
 
 		// Output the page
 		$this->template->assign_vars(array(
@@ -162,6 +162,7 @@ class admin_controller implements admin_interface
 		$this->config->set('auto_db_backup_gc', $this->request->variable('auto_db_backup_gc', 0) * ext::seconds);
 		$this->config->set('auto_db_backup_last_gc', $this->backup_date - ($this->request->variable('auto_db_backup_gc', 0) * ext::seconds), 0);
 		$this->config->set('auto_db_backup_optimize', $this->request->variable('auto_db_backup_optimize', 0));
+		$this->config->set('auto_db_backup_timezone', $this->user->data['user_timezone'], '');
 	}
 
 	protected function get_filetypes()
