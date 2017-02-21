@@ -10,12 +10,12 @@
 namespace david63\autodbbackup\cron\task\core;
 
 use Symfony\Component\DependencyInjection\ContainerInterface;
-use \phpbb\cron\task\base;
-use \phpbb\config\config;
-use \phpbb\db\driver\driver_interface;
-use \phpbb\log\log;
-use \phpbb\user;
-use \phpbb\event\dispatcher_interface;
+use phpbb\cron\task\base;
+use phpbb\config\config;
+use phpbb\db\driver\driver_interface;
+use phpbb\log\log;
+use phpbb\user;
+use phpbb\event\dispatcher_interface;
 
 class auto_db_backup extends base
 {

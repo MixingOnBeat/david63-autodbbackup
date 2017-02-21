@@ -9,13 +9,13 @@
 
 namespace david63\autodbbackup\controller;
 
-use \phpbb\config\config;
-use \phpbb\request\request;
-use \phpbb\template\template;
-use \phpbb\user;
-use \phpbb\log\log;
-use \phpbb\language\language;
-use \david63\autodbbackup\ext;
+use phpbb\config\config;
+use phpbb\request\request;
+use phpbb\template\template;
+use phpbb\user;
+use phpbb\log\log;
+use phpbb\language\language;
+use david63\autodbbackup\ext;
 
 /**
 * Admin controller

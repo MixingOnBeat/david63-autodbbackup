@@ -9,7 +9,7 @@
 
 namespace david63\autodbbackup;
 
-use \phpbb\extension\base;
+use phpbb\extension\base;
 
 class ext extends base
 {
